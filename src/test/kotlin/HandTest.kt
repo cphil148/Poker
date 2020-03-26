@@ -14,4 +14,15 @@ class HandTest{
 
         assertThat(hand.cards.size).isEqualTo(5)
     }
+
+    @Test
+    fun `A Hand cannot have two cards of equal value and suit`() {
+        val invalidHand = Hand(Card(Value.FOUR, 'H'),
+            Card(Value.FOUR, 'H'),
+            Card(Value.FOUR, 'H'),
+            Card(Value.FOUR, 'H'),
+            Card(Value.FOUR, 'H'))
+
+        assertThat(invalidHand.isValid()).isTrue()
+    }
 }

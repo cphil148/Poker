@@ -1,29 +1,10 @@
 
 
-data class Card(val Value: CardValue, val suit: Suits) {
-
+class Card(val value: Value) {
 
 }
 
-enum class CardValue{
+enum class Value{
     TWO,
-    THREE,
-    FOUR,
-    FIVE,
-    SIX,
-    SEVEN,
-    EIGHT,
-    NINE,
-    TEN,
-    JACK,
-    QUEEN,
-    KING,
     ACE
-}
-
-enum class Suits{
-    SPADES,
-    CLUBS,
-    HEARTS,
-    DIAMONDS
 }

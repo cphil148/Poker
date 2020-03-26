@@ -3,25 +3,23 @@ import org.junit.Test
 
 class CardTest{
 
-    private val aceCard = Card(Value.ACE, 'D')
-
+    private val diamondAceCard = Card(Value.ACE, 'D')
+    private val heartAceCard = Card(Value.ACE, 'H')
     private val twoCard = Card(Value.TWO, 'D')
 
     @Test
-    fun `Ace should be higher than Two`() {
-        assertThat(aceCard.value > twoCard.value).isTrue()
-        assertThat(aceCard.value < twoCard.value).isFalse()
+    fun `Cards of higher value are greater than cards of lower value`() {
+        assertThat(heartAceCard.value > twoCard.value).isTrue()
+        assertThat(heartAceCard.value < twoCard.value).isFalse()
     }
 
     @Test
-    fun `Two cards of the same value are equal`() {
-        val fiveCard = Card(Value.FIVE, 'D')
-        val anotherFiveCard = Card(Value.FIVE, 'D')
-        assertThat(fiveCard.value == anotherFiveCard.value).isTrue()
+    fun `Two Different cards of the same value are equal`() {
+        assertThat(heartAceCard.value == diamondAceCard.value).isTrue()
     }
 
     @Test
-    fun `A card has a suite mmmm boi`() {
-        assertThat(aceCard.suit).isNotNull()
+    fun `A card has a suite`() {
+        assertThat(heartAceCard.suit).isNotNull()
     }
 }

@@ -1,6 +1,6 @@
 
 
-class Card(val value: Value) {
+class Card(val value: Value, val suit: Char) {
 
 }
 

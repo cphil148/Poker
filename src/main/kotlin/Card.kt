@@ -6,6 +6,16 @@ class Card(val value: Value) {
 
 enum class Value{
     TWO,
+    THREE,
+    FOUR,
     FIVE,
-    ACE,
+    SIX,
+    SEVEN,
+    EIGHT,
+    NINE,
+    TEN,
+    JACK,
+    QUEEN,
+    KING,
+    ACE
 }

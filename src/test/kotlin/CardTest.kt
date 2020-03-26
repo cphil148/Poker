@@ -3,17 +3,13 @@ import org.junit.Test
 
 class CardTest{
 
-    @Test
-    fun `Ace should be higher than Two`() {
-        val aceCard = Card(Value.ACE)
-        val twoCard = Card(Value.TWO)
-        assertThat(aceCard.value > twoCard.value).isTrue()
-    }
+    private val aceCard = Card(Value.ACE)
+
+    private val twoCard = Card(Value.TWO)
 
     @Test
-    fun `Two Greater Than Ace Is False`() {
-        val aceCard = Card(Value.ACE)
-        val twoCard = Card(Value.TWO)
+    fun `Ace should be higher than Two`() {
+        assertThat(aceCard.value > twoCard.value).isTrue()
         assertThat(aceCard.value < twoCard.value).isFalse()
     }
 

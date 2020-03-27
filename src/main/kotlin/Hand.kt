@@ -7,6 +7,14 @@ data class Hand(
     val cardFour: Card,
     val cardFive: Card) {
 
+    private val listOfCards = if (this.isValid()) listOf(
+        cardOne,
+        cardTwo,
+        cardThree,
+        cardFour,
+        cardFive
+    ) else throw Exception("Cannot Organize invalid hand")
+
     var isOrganized: Boolean = false
 
     val cards: MutableMap<Value,MutableList<Card>> =
@@ -28,11 +36,18 @@ data class Hand(
     fun isValid(): Boolean =
         setOf(cardOne,cardTwo,cardThree,cardFour,cardFive).distinctBy{Pair(it.value,it.suit)}.size == 5
 
+
     fun organizeHand(){
-
-        val listOfCards = if(this.isValid()) listOf(cardOne,cardTwo,cardThree,cardFour,cardFive) else throw Exception("Cannot Organize invalid hand")
-
         listOfCards.forEach { cards.get(it.value)!!.add(it)}
         isOrganized = true
+    }
+
+    fun determineHighCard(): Card {
+        var highCard = listOfCards.first()
+        listOfCards.forEach {
+            if(it.value > highCard.value)
+                highCard = it
+        }
+        return highCard
     }
 }

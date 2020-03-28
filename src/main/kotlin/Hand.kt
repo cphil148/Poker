@@ -50,4 +50,13 @@ data class Hand(
         }
         return highCard
     }
+
+    fun determinePair(): Card {
+        var pairCard = listOfCards.first()
+        cards.forEach {
+            if(it.value.size == 2)
+                pairCard = it.value.first()
+        }
+        return pairCard
+    }
 }

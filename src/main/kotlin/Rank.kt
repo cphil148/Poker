@@ -1,0 +1,11 @@
+enum class Rank {
+    HIGHCARD,
+    PAIR,
+    TWOPAIR,
+    THREEOFAKIND,
+    STRAIGHT,
+    FLUSH,
+    FULLHOUSE,
+    FOUROFAKIND,
+    STRAIGHFLUSH
+}

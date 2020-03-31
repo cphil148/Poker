@@ -33,7 +33,7 @@ data class Hand(
             Pair(Value.KING, mutableListOf()),
             Pair(Value.ACE, mutableListOf()))
 
-    fun isValid(): Boolean =
+    private fun isValid(): Boolean =
         setOf(cardOne,cardTwo,cardThree,cardFour,cardFive).distinctBy{Pair(it.value,it.suit)}.size == 5
 
 
@@ -51,12 +51,21 @@ data class Hand(
         return highCard
     }
 
-    fun determinePair(): Card {
+    fun determineHighestPairedCard(): Card {
         var pairCard = listOfCards.first()
         cards.forEach {
             if(it.value.size == 2)
                 pairCard = it.value.first()
         }
         return pairCard
+    }
+
+    fun determineThreeOfAKindCard(): Card {
+        var threeOfAKindCard = listOfCards.first()
+        cards.forEach{
+            if(it.value.size == 3)
+                threeOfAKindCard = it.value.first()
+        }
+        return threeOfAKindCard
     }
 }

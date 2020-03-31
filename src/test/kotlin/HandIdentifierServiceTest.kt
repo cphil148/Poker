@@ -33,4 +33,32 @@ class HandIdentifierServiceTest {
         pairHand.organizeHand()
         assertThat(handIdentifierService.determineType(pairHand)).isEqualTo(Rank.PAIR)
     }
+
+    @Test
+    fun `determineType can identify a TwoPair hand`() {
+        val pairHand = Hand(
+            Card(Value.TWO, 'S'),
+            Card(Value.TWO, 'H'),
+            Card(Value.FOUR, 'C'),
+            Card(Value.FOUR, 'D'),
+            Card(Value.TEN, 'H')
+        )
+
+        pairHand.organizeHand()
+        assertThat(handIdentifierService.determineType(pairHand)).isEqualTo(Rank.TWOPAIR)
+    }
+
+    @Test
+    fun `determineType can identify a ThreeOfAKind hand`() {
+        val pairHand = Hand(
+            Card(Value.TWO, 'S'),
+            Card(Value.TWO, 'H'),
+            Card(Value.TWO, 'C'),
+            Card(Value.SIX, 'D'),
+            Card(Value.TEN, 'H')
+        )
+
+        pairHand.organizeHand()
+        assertThat(handIdentifierService.determineType(pairHand)).isEqualTo(Rank.THREEOFAKIND)
+    }
 }

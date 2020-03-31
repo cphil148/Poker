@@ -46,4 +46,25 @@ class DetermineWinnerServiceTest{
         assertThat(winnerService.compareHands(handOne,handTwo)).isEqualTo(handTwo)
         assertThat(winnerService.compareHands(handTwo,handOne)).isEqualTo(handTwo)
     }
+
+    @Test
+    fun `compare Hands can determine winner by TwoPairs (regardless of order)`() {
+        val handOne = Hand(
+            Card(Value.SIX,'S'),
+            Card(Value.SIX,'H'),
+            Card(Value.TWO,'C'),
+            Card(Value.TWO,'D'),
+            Card(Value.TEN,'H'))
+
+        val handTwo = Hand(
+            Card(Value.TWO,'S'),
+            Card(Value.THREE,'S'),
+            Card(Value.THREE,'C'),
+            Card(Value.FOUR,'D'),
+            Card(Value.FOUR,'H'))
+
+
+        assertThat(winnerService.compareHands(handOne,handTwo)).isEqualTo(handOne)
+        assertThat(winnerService.compareHands(handTwo,handOne)).isEqualTo(handOne)
+    }
 }

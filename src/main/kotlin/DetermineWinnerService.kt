@@ -17,6 +17,8 @@ class DetermineWinnerService {
         if (handOneType == handTwoType) {
             winner = when (handOneType) {
                 Rank.HIGHCARD -> determineHighCardWinner(handOne, handTwo)
+                Rank.PAIR -> determinePairWinner(handOne,handTwo)
+                Rank.TWOPAIR -> determinePairWinner(handOne,handTwo)
                 else -> determinePairWinner(handOne, handTwo)
             }
         }

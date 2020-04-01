@@ -5,6 +5,7 @@ class HandIdentifierService {
         val listOfMatches = findMatches(hand)
 
         type = when {
+            listOfMatches.contains(4) -> Rank.FOUROFAKIND
             listOfMatches.contains(3) -> Rank.THREEOFAKIND
             listOfMatches.contains(2) -> determinePairRank(listOfMatches)
             else -> Rank.HIGHCARD

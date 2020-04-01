@@ -88,4 +88,25 @@ class DetermineWinnerServiceTest{
         assertThat(winnerService.compareHands(threeOfAKindHandOne,threeOfAKindHandTwo)).isEqualTo(threeOfAKindHandTwo)
         assertThat(winnerService.compareHands(threeOfAKindHandTwo,threeOfAKindHandOne)).isEqualTo(threeOfAKindHandTwo)
     }
+
+    @Test
+    fun `compare Hands can determine winner by FourOfAKind (regardless of order)`() {
+        val fourOfAKindHandOne = Hand(
+            Card(Value.SIX,'S'),
+            Card(Value.TWO,'S'),
+            Card(Value.TWO,'C'),
+            Card(Value.TWO,'D'),
+            Card(Value.TWO,'H'))
+
+        val fourOfAKindHandTwo = Hand(
+            Card(Value.TWO,'S'),
+            Card(Value.THREE,'S'),
+            Card(Value.THREE,'C'),
+            Card(Value.THREE,'D'),
+            Card(Value.THREE,'H'))
+
+
+        assertThat(winnerService.compareHands(fourOfAKindHandOne,fourOfAKindHandTwo)).isEqualTo(fourOfAKindHandTwo)
+        assertThat(winnerService.compareHands(fourOfAKindHandTwo,fourOfAKindHandOne)).isEqualTo(fourOfAKindHandTwo)
+    }
 }

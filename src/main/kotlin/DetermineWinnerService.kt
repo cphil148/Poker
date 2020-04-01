@@ -20,11 +20,19 @@ class DetermineWinnerService {
                 Rank.PAIR -> determinePairWinner(handOne,handTwo)
                 Rank.TWOPAIR -> determinePairWinner(handOne,handTwo)
                 Rank.THREEOFAKIND -> determineThreeOfAKindWinner(handOne,handTwo)
+                Rank.FOUROFAKIND -> determineFourOfAKindWinner(handOne,handTwo)
                 else -> determinePairWinner(handOne, handTwo)
             }
         }
 
         return winner
+    }
+
+    private fun determineFourOfAKindWinner(handOne: Hand, handTwo: Hand): Hand {
+        val fourOfAKindCardOne = handOne.determineFourOfAKindCard()
+        val fourOfAKindCardTwo = handTwo.determineFourOfAKindCard()
+
+            return if (fourOfAKindCardOne.value > fourOfAKindCardTwo.value) handOne else handTwo
     }
 
     private fun determineThreeOfAKindWinner(handOne: Hand, handTwo: Hand): Hand {

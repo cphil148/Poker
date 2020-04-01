@@ -68,4 +68,14 @@ data class Hand(
         }
         return threeOfAKindCard
     }
+
+    fun determineFourOfAKindCard(): Card {
+        var fourOfAKindCard = listOfCards.first()
+        cards.forEach{
+            if(it.value.size == 4)
+                fourOfAKindCard = it.value.first()
+
+        }
+        return fourOfAKindCard
+    }
 }

@@ -27,6 +27,14 @@ class HandTest {
         Card(Value.JACK, 'H')
     )
 
+    val fourOfAKindHand = Hand(
+        Card(Value.TWO, 'H'),
+        Card(Value.TWO, 'S'),
+        Card(Value.TWO, 'C'),
+        Card(Value.TWO, 'D'),
+        Card(Value.JACK, 'H')
+    )
+
     @Test
     fun `organizeHand throws an exception is hand isn't valid`() {
 
@@ -73,5 +81,12 @@ class HandTest {
         threeOfAKindHand.organizeHand()
         val expectedCard = Card(Value.TWO, 'H')
         assertThat(threeOfAKindHand.determineThreeOfAKindCard().value).isEqualTo(expectedCard.value)
+    }
+
+    @Test
+    fun `determineFourOfAKindCard finds a card whose value matches the three of a kind in the hand`() {
+        fourOfAKindHand.organizeHand()
+        val expectedCard = Card(Value.TWO, 'H')
+        assertThat(fourOfAKindHand.determineFourOfAKindCard().value).isEqualTo(expectedCard.value)
     }
 }

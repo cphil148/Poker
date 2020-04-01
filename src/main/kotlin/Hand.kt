@@ -52,30 +52,23 @@ data class Hand(
     }
 
     fun determineHighestPairedCard(): Card {
-        var pairCard = listOfCards.first()
-        cards.forEach {
-            if(it.value.size == 2)
-                pairCard = it.value.first()
-        }
-        return pairCard
+        return findRepresentativeMatchCard(2)
     }
 
     fun determineThreeOfAKindCard(): Card {
-        var threeOfAKindCard = listOfCards.first()
-        cards.forEach{
-            if(it.value.size == 3)
-                threeOfAKindCard = it.value.first()
-        }
-        return threeOfAKindCard
+        return findRepresentativeMatchCard(3)
     }
 
     fun determineFourOfAKindCard(): Card {
-        var fourOfAKindCard = listOfCards.first()
-        cards.forEach{
-            if(it.value.size == 4)
-                fourOfAKindCard = it.value.first()
+        return findRepresentativeMatchCard(4)
+    }
 
+    fun findRepresentativeMatchCard(size: Int): Card{
+        var interestingCard = listOfCards.first()
+        cards.forEach{
+            if(it.value.size == size)
+                interestingCard = it.value.first()
         }
-        return fourOfAKindCard
+        return interestingCard
     }
 }

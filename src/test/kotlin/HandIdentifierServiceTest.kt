@@ -63,6 +63,18 @@ class HandIdentifierServiceTest {
     }
 
     @Test
+    fun `determinetype can identify a Flush hand`() {
+        val flushHand = Hand(
+            Card(Value.TWO,'H'),
+            Card(Value.THREE,'H'),
+            Card(Value.FOUR,'H'),
+            Card(Value.SIX,'H'),
+            Card(Value.NINE,'H'))
+
+        assertThat(handIdentifierService.determineType((flushHand))).isEqualTo(Rank.FLUSH)
+    }
+
+    @Test
     fun `determineType can identify a FourOfAKind hand`() {
         val fourOfAKindHand = Hand(
             Card(Value.TWO, 'S'),

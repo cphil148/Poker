@@ -7,7 +7,7 @@ data class Hand(
     val cardFour: Card,
     val cardFive: Card) {
 
-    private val listOfCards = if (this.isValid()) listOf(
+    val listOfCards = if (this.isValid()) listOf(
         cardOne,
         cardTwo,
         cardThree,

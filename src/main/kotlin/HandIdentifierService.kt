@@ -6,12 +6,23 @@ class HandIdentifierService {
 
         type = when {
             listOfMatches.contains(4) -> Rank.FOUROFAKIND
+            isFlush(hand) -> Rank.FLUSH
             listOfMatches.contains(3) -> Rank.THREEOFAKIND
             listOfMatches.contains(2) -> determinePairRank(listOfMatches)
             else -> Rank.HIGHCARD
         }
 
         return type
+    }
+
+    private fun isFlush(hand: Hand): Boolean {
+        var isFlush = true
+        val firstCardSuit = hand.cardOne.suit
+        hand.listOfCards.forEach {
+            if (it.suit != firstCardSuit)
+                isFlush = false
+        }
+        return isFlush
     }
 
     private fun findMatches(hand: Hand): MutableList<Int> {

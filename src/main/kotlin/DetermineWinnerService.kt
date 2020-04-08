@@ -31,27 +31,30 @@ class DetermineWinnerService {
         val fourOfAKindCardOne = handOne.determineFourOfAKindCard()
         val fourOfAKindCardTwo = handTwo.determineFourOfAKindCard()
 
-            return if (fourOfAKindCardOne.value > fourOfAKindCardTwo.value) handOne else handTwo
+            return determineWinner(fourOfAKindCardOne, fourOfAKindCardTwo, handOne, handTwo)
     }
 
     private fun determineThreeOfAKindWinner(handOne: Hand, handTwo: Hand): Hand {
         val threeOfAKindCardOne = handOne.determineThreeOfAKindCard()
         val threeOfAKindCardTwo = handTwo.determineThreeOfAKindCard()
 
-        return if (threeOfAKindCardOne.value > threeOfAKindCardTwo.value) handOne else handTwo
+        return determineWinner(threeOfAKindCardOne, threeOfAKindCardTwo, handOne, handTwo)
     }
 
     private fun determinePairWinner(handOne: Hand, handTwo: Hand): Hand {
         val pairCardOne = handOne.determineHighestPairedCard()
         val pairCardTwo = handTwo.determineHighestPairedCard()
 
-        return if (pairCardOne.value > pairCardTwo.value) handOne else handTwo
+        return determineWinner(pairCardOne, pairCardTwo, handOne, handTwo)
     }
 
     private fun determineHighCardWinner(handOne: Hand, handTwo: Hand): Hand {
         val highCardOne = handOne.determineHighCard()
         val highCardTwo = handTwo.determineHighCard()
 
-        return if (highCardOne.value > highCardTwo.value) handOne else handTwo
+        return determineWinner(highCardOne, highCardTwo, handOne, handTwo)
     }
+
+    private fun determineWinner(cardOne: Card, cardTwo: Card, handOne: Hand, handTwo: Hand) =
+        if (cardOne.value > cardTwo.value) handOne else handTwo
 }

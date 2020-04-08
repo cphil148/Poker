@@ -3,11 +3,15 @@ class HandIdentifierService {
 
         val type: Rank
         val listOfMatches = findMatches(hand)
+        val straight = isStraight(hand)
+        val flush = isFlush(hand)
 
         type = when {
+            straight && flush -> Rank.STRAIGHTFLUSH
             listOfMatches.contains(4) -> Rank.FOUROFAKIND
             listOfMatches.contains(3) && listOfMatches.contains(2) -> Rank.FULLHOUSE
-            isFlush(hand) -> Rank.FLUSH
+            flush -> Rank.FLUSH
+            straight -> Rank.STRAIGHT
             listOfMatches.contains(3) -> Rank.THREEOFAKIND
             listOfMatches.contains(2) -> determinePairRank(listOfMatches)
             else -> Rank.HIGHCARD
@@ -17,6 +21,22 @@ class HandIdentifierService {
     }
 
 
+    private fun isStraight(hand: Hand): Boolean{
+        var isStraight = true
+        val sortedHand = hand.listOfCards.sortedBy { it.value }
+        val firstCardValue = sortedHand.first().value
+        var previousOrdinal = firstCardValue.ordinal
+
+        for(i in 1..4) {
+            val currentOrdinal = sortedHand[i].value.ordinal
+            if(currentOrdinal != previousOrdinal+1) {
+                isStraight = false
+                break
+            }
+            previousOrdinal = currentOrdinal
+        }
+        return isStraight
+    }
 
     private fun isFlush(hand: Hand): Boolean {
         var isFlush = true

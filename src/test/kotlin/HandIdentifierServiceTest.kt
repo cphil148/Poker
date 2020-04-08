@@ -101,4 +101,48 @@ class HandIdentifierServiceTest {
         fullHouseHand.organizeHand()
         assertThat(handIdentifierService.determineType(fullHouseHand)).isEqualTo(Rank.FULLHOUSE)
     }
+
+    @Test
+    fun `determineType can identify a Straight hand`() {
+        val straightHand = Hand(
+            Card(Value.TWO, 'S'),
+            Card(Value.THREE, 'H'),
+            Card(Value.FOUR, 'C'),
+            Card(Value.FIVE, 'D'),
+            Card(Value.SIX, 'H')
+        )
+
+        val nonStraightHand = Hand(
+            Card(Value.TWO, 'S'),
+            Card(Value.THREE, 'H'),
+            Card(Value.FOUR, 'C'),
+            Card(Value.SIX, 'D'),
+            Card(Value.SEVEN, 'H')
+        )
+
+        assertThat(handIdentifierService.determineType(straightHand)).isEqualTo(Rank.STRAIGHT)
+        assertThat(handIdentifierService.determineType(nonStraightHand)).isNotEqualTo(Rank.STRAIGHT)
+    }
+
+    @Test
+    fun `determineType can identify a StraightFlush hand`() {
+        val straightFlushHand = Hand(
+            Card(Value.TWO, 'H'),
+            Card(Value.THREE, 'H'),
+            Card(Value.FOUR, 'H'),
+            Card(Value.FIVE, 'H'),
+            Card(Value.SIX, 'H')
+        )
+
+        val nonStraightFlushHand = Hand(
+            Card(Value.TWO, 'S'),
+            Card(Value.THREE, 'H'),
+            Card(Value.FOUR, 'C'),
+            Card(Value.FIVE, 'D'),
+            Card(Value.SIX, 'H')
+        )
+
+        assertThat(handIdentifierService.determineType(straightFlushHand)).isEqualTo(Rank.STRAIGHTFLUSH)
+        assertThat(handIdentifierService.determineType(nonStraightFlushHand)).isNotEqualTo(Rank.STRAIGHTFLUSH)
+    }
 }

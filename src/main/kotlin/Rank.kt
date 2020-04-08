@@ -7,5 +7,5 @@ enum class Rank {
     FLUSH,
     FULLHOUSE,
     FOUROFAKIND,
-    STRAIGHFLUSH
+    STRAIGHTFLUSH
 }

@@ -90,6 +90,27 @@ class DetermineWinnerServiceTest{
     }
 
     @Test
+    fun `compare Hands can determine winner by FullHouse (regardless of order)`() {
+        val fullHouseHandOne = Hand(
+            Card(Value.SIX,'S'),
+            Card(Value.SIX,'H'),
+            Card(Value.TWO,'C'),
+            Card(Value.TWO,'D'),
+            Card(Value.TWO,'H'))
+
+        val fullHouseHandTwo = Hand(
+            Card(Value.FOUR,'S'),
+            Card(Value.THREE,'S'),
+            Card(Value.THREE,'C'),
+            Card(Value.THREE,'D'),
+            Card(Value.FOUR,'H'))
+
+
+        assertThat(winnerService.compareHands(fullHouseHandOne,fullHouseHandTwo)).isEqualTo(fullHouseHandTwo)
+        assertThat(winnerService.compareHands(fullHouseHandTwo,fullHouseHandOne)).isEqualTo(fullHouseHandTwo)
+    }
+
+    @Test
     fun `compare Hands can determine winner by FourOfAKind (regardless of order)`() {
         val fourOfAKindHandOne = Hand(
             Card(Value.SIX,'S'),

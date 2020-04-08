@@ -19,6 +19,7 @@ class DetermineWinnerService {
                 Rank.PAIR -> determinePairWinner(handOne,handTwo)
                 Rank.TWOPAIR -> determinePairWinner(handOne,handTwo)
                 Rank.THREEOFAKIND -> determineThreeOfAKindWinner(handOne,handTwo)
+                Rank.FULLHOUSE -> determineThreeOfAKindWinner(handOne,handTwo)
                 Rank.FOUROFAKIND -> determineFourOfAKindWinner(handOne,handTwo)
                 else -> determineHighCardWinner(handOne, handTwo)
             }

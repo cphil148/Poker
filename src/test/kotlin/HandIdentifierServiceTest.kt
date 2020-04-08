@@ -87,4 +87,18 @@ class HandIdentifierServiceTest {
         fourOfAKindHand.organizeHand()
         assertThat(handIdentifierService.determineType(fourOfAKindHand)).isEqualTo(Rank.FOUROFAKIND)
     }
+
+    @Test
+    fun `determineType can identify a FullHouse hand`() {
+        val fullHouseHand = Hand(
+            Card(Value.TWO, 'S'),
+            Card(Value.TWO, 'H'),
+            Card(Value.TWO, 'C'),
+            Card(Value.TEN, 'D'),
+            Card(Value.TEN, 'H')
+        )
+
+        fullHouseHand.organizeHand()
+        assertThat(handIdentifierService.determineType(fullHouseHand)).isEqualTo(Rank.FULLHOUSE)
+    }
 }

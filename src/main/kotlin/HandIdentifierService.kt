@@ -6,6 +6,7 @@ class HandIdentifierService {
 
         type = when {
             listOfMatches.contains(4) -> Rank.FOUROFAKIND
+            listOfMatches.contains(3) && listOfMatches.contains(2) -> Rank.FULLHOUSE
             isFlush(hand) -> Rank.FLUSH
             listOfMatches.contains(3) -> Rank.THREEOFAKIND
             listOfMatches.contains(2) -> determinePairRank(listOfMatches)
@@ -14,6 +15,8 @@ class HandIdentifierService {
 
         return type
     }
+
+
 
     private fun isFlush(hand: Hand): Boolean {
         var isFlush = true

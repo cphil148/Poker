@@ -172,4 +172,25 @@ class DetermineWinnerServiceTest{
         assertThat(winnerService.compareHands(straightHandOne,straightHandTwo)).isEqualTo(straightHandTwo)
         assertThat(winnerService.compareHands(straightHandTwo,straightHandOne)).isEqualTo(straightHandTwo)
     }
+
+    @Test
+    fun `compare Hands can determine winner by StraightFlush (regardless of order)`() {
+        val straightFlushHandOne = Hand(
+            Card(Value.TWO,Suit.SPADE),
+            Card(Value.THREE,Suit.SPADE),
+            Card(Value.FOUR,Suit.SPADE),
+            Card(Value.FIVE,Suit.SPADE),
+            Card(Value.SIX,Suit.SPADE))
+
+        val straightFlushHandTwo = Hand(
+            Card(Value.FIVE,Suit.HEART),
+            Card(Value.SIX,Suit.HEART),
+            Card(Value.SEVEN,Suit.HEART),
+            Card(Value.EIGHT,Suit.HEART),
+            Card(Value.NINE,Suit.HEART))
+
+
+        assertThat(winnerService.compareHands(straightFlushHandOne,straightFlushHandTwo)).isEqualTo(straightFlushHandTwo)
+        assertThat(winnerService.compareHands(straightFlushHandTwo,straightFlushHandOne)).isEqualTo(straightFlushHandTwo)
+    }
 }

@@ -1,6 +1,6 @@
 
 
-data class Card(val value: Value, val suit: Char) {
+data class Card(val value: Value, val suit: Suit) {
 
 }
 
@@ -18,4 +18,11 @@ enum class Value{
     QUEEN,
     KING,
     ACE
+}
+
+enum class Suit{
+    HEART,
+    DIAMOND,
+    SPADE,
+    CLUB
 }

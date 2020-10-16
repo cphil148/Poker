@@ -8,11 +8,11 @@ class HandIdentifierServiceTest {
     @Test
     fun `determineType can identify a highCard hand`() {
         val highCardHand = Hand(
-            Card(Value.TWO, 'S'),
-            Card(Value.THREE, 'S'),
-            Card(Value.FOUR, 'C'),
-            Card(Value.SIX, 'D'),
-            Card(Value.TEN, 'H')
+            Card(Value.TWO, Suit.SPADE),
+            Card(Value.THREE, Suit.SPADE),
+            Card(Value.FOUR, Suit.CLUB),
+            Card(Value.SIX, Suit.DIAMOND),
+            Card(Value.TEN, Suit.HEART)
         )
 
         highCardHand.organizeHand()
@@ -23,11 +23,11 @@ class HandIdentifierServiceTest {
     @Test
     fun `determineType can identify a Pair hand`() {
         val pairHand = Hand(
-            Card(Value.TWO, 'S'),
-            Card(Value.TWO, 'H'),
-            Card(Value.FOUR, 'C'),
-            Card(Value.SIX, 'D'),
-            Card(Value.TEN, 'H')
+            Card(Value.TWO, Suit.SPADE),
+            Card(Value.TWO, Suit.HEART),
+            Card(Value.FOUR, Suit.CLUB),
+            Card(Value.SIX, Suit.DIAMOND),
+            Card(Value.TEN, Suit.HEART)
         )
 
         pairHand.organizeHand()
@@ -37,11 +37,11 @@ class HandIdentifierServiceTest {
     @Test
     fun `determineType can identify a TwoPair hand`() {
         val pairHand = Hand(
-            Card(Value.TWO, 'S'),
-            Card(Value.TWO, 'H'),
-            Card(Value.FOUR, 'C'),
-            Card(Value.FOUR, 'D'),
-            Card(Value.TEN, 'H')
+            Card(Value.TWO, Suit.SPADE),
+            Card(Value.TWO, Suit.HEART),
+            Card(Value.FOUR, Suit.CLUB),
+            Card(Value.FOUR, Suit.DIAMOND),
+            Card(Value.TEN, Suit.HEART)
         )
 
         pairHand.organizeHand()
@@ -51,11 +51,11 @@ class HandIdentifierServiceTest {
     @Test
     fun `determineType can identify a ThreeOfAKind hand`() {
         val threeOfAKindHand = Hand(
-            Card(Value.TWO, 'S'),
-            Card(Value.TWO, 'H'),
-            Card(Value.TWO, 'C'),
-            Card(Value.SIX, 'D'),
-            Card(Value.TEN, 'H')
+            Card(Value.TWO, Suit.SPADE),
+            Card(Value.TWO, Suit.HEART),
+            Card(Value.TWO, Suit.CLUB),
+            Card(Value.SIX, Suit.DIAMOND),
+            Card(Value.TEN, Suit.HEART)
         )
 
         threeOfAKindHand.organizeHand()
@@ -65,11 +65,11 @@ class HandIdentifierServiceTest {
     @Test
     fun `determinetype can identify a Flush hand`() {
         val flushHand = Hand(
-            Card(Value.TWO,'H'),
-            Card(Value.THREE,'H'),
-            Card(Value.FOUR,'H'),
-            Card(Value.SIX,'H'),
-            Card(Value.NINE,'H'))
+            Card(Value.TWO,Suit.HEART),
+            Card(Value.THREE,Suit.HEART),
+            Card(Value.FOUR,Suit.HEART),
+            Card(Value.SIX,Suit.HEART),
+            Card(Value.NINE,Suit.HEART))
 
         assertThat(handIdentifierService.determineType((flushHand))).isEqualTo(Rank.FLUSH)
     }
@@ -77,11 +77,11 @@ class HandIdentifierServiceTest {
     @Test
     fun `determineType can identify a FourOfAKind hand`() {
         val fourOfAKindHand = Hand(
-            Card(Value.TWO, 'S'),
-            Card(Value.TWO, 'H'),
-            Card(Value.TWO, 'C'),
-            Card(Value.TWO, 'D'),
-            Card(Value.TEN, 'H')
+            Card(Value.TWO, Suit.SPADE),
+            Card(Value.TWO, Suit.HEART),
+            Card(Value.TWO, Suit.CLUB),
+            Card(Value.TWO, Suit.DIAMOND),
+            Card(Value.TEN, Suit.HEART)
         )
 
         fourOfAKindHand.organizeHand()
@@ -91,11 +91,11 @@ class HandIdentifierServiceTest {
     @Test
     fun `determineType can identify a FullHouse hand`() {
         val fullHouseHand = Hand(
-            Card(Value.TWO, 'S'),
-            Card(Value.TWO, 'H'),
-            Card(Value.TWO, 'C'),
-            Card(Value.TEN, 'D'),
-            Card(Value.TEN, 'H')
+            Card(Value.TWO, Suit.SPADE),
+            Card(Value.TWO, Suit.HEART),
+            Card(Value.TWO, Suit.CLUB),
+            Card(Value.TEN, Suit.DIAMOND),
+            Card(Value.TEN, Suit.HEART)
         )
 
         fullHouseHand.organizeHand()
@@ -105,19 +105,19 @@ class HandIdentifierServiceTest {
     @Test
     fun `determineType can identify a Straight hand`() {
         val straightHand = Hand(
-            Card(Value.TWO, 'S'),
-            Card(Value.THREE, 'H'),
-            Card(Value.FOUR, 'C'),
-            Card(Value.FIVE, 'D'),
-            Card(Value.SIX, 'H')
+            Card(Value.TWO, Suit.SPADE),
+            Card(Value.THREE, Suit.HEART),
+            Card(Value.FOUR, Suit.CLUB),
+            Card(Value.FIVE, Suit.DIAMOND),
+            Card(Value.SIX, Suit.HEART)
         )
 
         val nonStraightHand = Hand(
-            Card(Value.TWO, 'S'),
-            Card(Value.THREE, 'H'),
-            Card(Value.FOUR, 'C'),
-            Card(Value.SIX, 'D'),
-            Card(Value.SEVEN, 'H')
+            Card(Value.TWO, Suit.SPADE),
+            Card(Value.THREE, Suit.HEART),
+            Card(Value.FOUR, Suit.CLUB),
+            Card(Value.SIX, Suit.DIAMOND),
+            Card(Value.SEVEN, Suit.HEART)
         )
 
         assertThat(handIdentifierService.determineType(straightHand)).isEqualTo(Rank.STRAIGHT)
@@ -127,19 +127,19 @@ class HandIdentifierServiceTest {
     @Test
     fun `determineType can identify a StraightFlush hand`() {
         val straightFlushHand = Hand(
-            Card(Value.TWO, 'H'),
-            Card(Value.THREE, 'H'),
-            Card(Value.FOUR, 'H'),
-            Card(Value.FIVE, 'H'),
-            Card(Value.SIX, 'H')
+            Card(Value.TWO, Suit.HEART),
+            Card(Value.THREE, Suit.HEART),
+            Card(Value.FOUR, Suit.HEART),
+            Card(Value.FIVE, Suit.HEART),
+            Card(Value.SIX, Suit.HEART)
         )
 
         val nonStraightFlushHand = Hand(
-            Card(Value.TWO, 'S'),
-            Card(Value.THREE, 'H'),
-            Card(Value.FOUR, 'C'),
-            Card(Value.FIVE, 'D'),
-            Card(Value.SIX, 'H')
+            Card(Value.TWO, Suit.SPADE),
+            Card(Value.THREE, Suit.HEART),
+            Card(Value.FOUR, Suit.CLUB),
+            Card(Value.FIVE, Suit.DIAMOND),
+            Card(Value.SIX, Suit.HEART)
         )
 
         assertThat(handIdentifierService.determineType(straightFlushHand)).isEqualTo(Rank.STRAIGHTFLUSH)

@@ -3,9 +3,9 @@ import org.junit.Test
 
 class CardTest{
 
-    private val diamondAceCard = Card(Value.ACE, 'D')
-    private val heartAceCard = Card(Value.ACE, 'H')
-    private val twoCard = Card(Value.TWO, 'D')
+    private val diamondAceCard = Card(Value.ACE, Suit.DIAMOND)
+    private val heartAceCard = Card(Value.ACE, Suit.HEART)
+    private val twoCard = Card(Value.TWO, Suit.DIAMOND)
 
     @Test
     fun `Cards of higher value are greater than cards of lower value`() {
